@@ -1,0 +1,46 @@
+==================================
+            TO DO LIST
+================================== 
+
+- Integracion de musica  (2/4)
+
+- Vibracion de la camara al ritmo de la musica	(0,25)
+
+- Filtrar las resoluciones menores a 1024 x 768
+
+==================================
+           FINISHED LIST
+================================== 
+
+- Añadir sonido de la muerte del player
+
+- Implementar la bajada de audio
+
+- Asignar los sonidos de los botonos al cliquearlos
+
+- Movimiento erratico de la camara
+
+- Sitema de guardado de tiempo
+
+- Diseñar el nivel 1
+
+- Diseñar el nivel 2
+
+- Diseñar el nivel 3
+
+- Añadir el fondo
+
+- Crear creditos
+
+- Añadir sistema de derrota
+
+- Creacion prefabs de obstaculos
+
+- Añadir animacion de aparicion de UI en niveles
+
+- Cambios de colores de los objectos
+
+- Creacion e implementacion del menu
+
+- Crear UI de los niveles (general)
+
