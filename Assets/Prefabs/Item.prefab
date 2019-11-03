@@ -93,6 +93,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172c69f750a6fc846a0be765b34d4ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 264be13f5d97b0340b70e63d369e25b4, type: 3}
+  - {fileID: 21300000, guid: 5c1be5bf997b1894cbbc56fcf504dcad, type: 3}
+  - {fileID: 21300000, guid: 0151213449d97c949814da2db5c9f44e, type: 3}
 --- !u!58 &2685073847348473559
 CircleCollider2D:
   m_ObjectHideFlags: 0

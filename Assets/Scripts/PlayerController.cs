@@ -21,8 +21,11 @@ public class PlayerController : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.tag == "Hexagon")
-            GameManager.instance.playerDied = true;
+        if(collider.transform.parent != null)
+        {
+            if (collider.transform.parent.gameObject.tag == "Hexagon")
+                GameManager.instance.playerDied = true;
+        }
     }
 
 }

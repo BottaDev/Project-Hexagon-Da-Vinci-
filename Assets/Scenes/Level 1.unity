@@ -475,6 +475,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hexagonSpeed: 3.3
   timeToWin: 75
+  buffTimer: 4.5
+  itemSpawnTimer: 1
   itemSpawns:
   - {fileID: 827621410}
   - {fileID: 827621409}

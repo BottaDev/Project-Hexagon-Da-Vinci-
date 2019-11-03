@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour {
 
     public float hexagonSpeed = 1f;
     public float timeToWin = 75;
+    public float buffTimer = 5;
+    public float itemSpawnTimer = 8;
+
     public Transform[] itemSpawns;
     public GameObject item;
 
@@ -24,8 +27,14 @@ public class GameManager : MonoBehaviour {
     public GameObject bestTimerUI;
     public GameObject lastTimerUI;
 
+    Spawner hexagonSpawner;
     float actualTimeNumber = 0;
     float lastTimeNumber = 0;
+    float currentBuffTime = 0;
+    float currentItemSpawnTime = 0;
+    float defaultHexagonSpeed;
+    float defaultHexagonSpawnRate;
+    bool slowModeAcive = false;
 
     float highScore;
     int level;
@@ -45,8 +54,14 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
+        GameObject objHexagonSpawner = GameObject.Find("Hexagon Spawner");
+        hexagonSpawner = objHexagonSpawner.gameObject.GetComponent<Spawner>();
+
         actualTimeNumber = 0;
         Cursor.visible = false;
+        currentBuffTime = buffTimer;
+        defaultHexagonSpeed = hexagonSpeed;
+        defaultHexagonSpawnRate = hexagonSpawner.spawnRate;
 
         // Busca el tiempo maximo del nivel actual
         level = SceneManager.GetActiveScene().buildIndex;
@@ -63,74 +78,109 @@ public class GameManager : MonoBehaviour {
     {
         // Player muere
         if (playerDied)
-        {
-            flag++;
-
-            if (flag <= 25)
-            {
-                StopPlayerMovement();
-
-                // Detener el movimiento de los obstaculos
-                GameObject hexagonSpawner = GameObject.Find("Hexagon Spawner");
-                hexagonSpawner.gameObject.GetComponent<Spawner>().spawnRate = 0;
-                hexagonSpeed = 0f;
-
-                // Detener la musica
-                audioController.StartCoroutine(audioController.PlayerDeadSound());
-
-                // Actualizar los tiempos
-                lastTimeNumber = actualTimeNumber;
-                lastTimeText.text = lastTimeNumber.ToString("F2");
-
-                actualTimeText.transform.parent.gameObject.GetComponent<Animator>().enabled = true;
-
-                // Gana el nivel 
-                if (Time.timeSinceLevelLoad <= timeToWin)
-                    Invoke("ShowGameOver", 2.5f);
-                else
-                    Invoke("ShowStageComplete", 2.5f);
-            }
-
-            if (Input.GetKey(KeyCode.M))
-            {
-                GameObject tempButton = GameObject.Find("MenuButton");
-                Button menuButton = tempButton.GetComponent<Button>();
-                menuButton.onClick.Invoke();
-            }
-            else if (Input.GetKey(KeyCode.R))
-            {
-                if (gameOverUI.activeSelf)
-                {
-                    GameObject tempButton = GameObject.Find("RetryButton");
-                    Button retryButton = tempButton.GetComponent<Button>();
-                    retryButton.onClick.Invoke();
-                }
-            }
-        }
+            EndGame();
         else
+            ContinueGame();
+    }
+
+    void EndGame()
+    {
+        flag++;
+
+        if (flag <= 25)
         {
-            if (Input.GetKey(KeyCode.Escape))
-                playerDied = true;
+            StopPlayerMovement();
 
-            SpawnItem();
+            ResetGameSpeed();
 
-            // Contador de tiempo
-            actualTimeNumber += Time.deltaTime;
-            actualTimeText.text = actualTimeNumber.ToString("F2");
+            // Detener el movimiento de los obstaculos
+            hexagonSpawner.gameObject.GetComponent<Spawner>().spawnRate = 0;
+            hexagonSpeed = 0f;
+
+            // Detener la musica
+            audioController.StartCoroutine(audioController.PlayerDeadSound());
+
+            // Actualizar los tiempos
+            lastTimeNumber = actualTimeNumber;
+            lastTimeText.text = lastTimeNumber.ToString("F2");
+
+            actualTimeText.transform.parent.gameObject.GetComponent<Animator>().enabled = true;
+
+            // Gana el nivel 
+            if (Time.timeSinceLevelLoad <= timeToWin)
+                Invoke("ShowGameOver", 2.5f);
+            else
+                Invoke("ShowStageComplete", 2.5f);
+        }
+
+        if (Input.GetKey(KeyCode.M))
+        {
+            GameObject tempButton = GameObject.Find("MenuButton");
+            Button menuButton = tempButton.GetComponent<Button>();
+            menuButton.onClick.Invoke();
+        }
+        else if (Input.GetKey(KeyCode.R))
+        {
+            if (gameOverUI.activeSelf)
+            {
+                GameObject tempButton = GameObject.Find("RetryButton");
+                Button retryButton = tempButton.GetComponent<Button>();
+                retryButton.onClick.Invoke();
+            }
         }
     }
 
-    public void SlowTime()
+    void ContinueGame()
     {
-        Time.timeScale = 0.5f;
-        audioController.audioSource.pitch = 0.5f;
+        if (Input.GetKey(KeyCode.Escape))
+            playerDied = true;
+
+        // Spawn Items
+        currentItemSpawnTime -= Time.deltaTime;
+        if (currentItemSpawnTime <= 0)
+        {
+            currentItemSpawnTime = itemSpawnTimer;
+            SpawnItem();
+        }
+
+        if (slowModeAcive)
+        {
+            currentBuffTime -= Time.deltaTime;
+            if (currentBuffTime <= 0)
+            {
+                currentBuffTime = buffTimer;
+                ResetGameSpeed();
+            }
+        }
+
+        // Contador de tiempo
+        actualTimeNumber += Time.deltaTime;
+        actualTimeText.text = actualTimeNumber.ToString("F2");
+    }
+
+    public void SlowGameSpeed()
+    {
+        hexagonSpeed /= 1.7f;
+        audioController.audioSource.pitch = 0.8f;
+        hexagonSpawner.spawnRate /= 1.7f; 
+
+        slowModeAcive = true;
+    }
+
+    private void ResetGameSpeed()
+    {
+        hexagonSpeed = defaultHexagonSpeed;
+        audioController.audioSource.pitch = 1;
+        hexagonSpawner.spawnRate = defaultHexagonSpawnRate;
+
+        slowModeAcive = false;
     }
 
     void SpawnItem()
     {
-        int random = Random.Range(0, 20);
+        int random = Random.Range(0, 10);
         Debug.Log("Random: " + random);
-        if (random == 19)
+        if (random == 9)
         {
             int randomPos = Random.Range(0, 6);
             Instantiate(item, itemSpawns[randomPos].position, itemSpawns[randomPos].rotation);

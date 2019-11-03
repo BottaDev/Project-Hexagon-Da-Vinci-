@@ -124,6 +124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4311015431973743196, guid: 3f6e3464c3846e94886174cea4e26c47,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 92ede49384ef8114784247f8a63434dd, type: 3}
     - target: {fileID: 4311015432245376653, guid: 3f6e3464c3846e94886174cea4e26c47,
         type: 3}
       propertyPath: m_IsActive
@@ -339,15 +344,15 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.30000305
       objectReference: {fileID: 0}
-    - target: {fileID: 4311015431056858351, guid: 3f6e3464c3846e94886174cea4e26c47,
-        type: 3}
-      propertyPath: levelIndex
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4311015431325589257, guid: 3f6e3464c3846e94886174cea4e26c47,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311015431056858351, guid: 3f6e3464c3846e94886174cea4e26c47,
+        type: 3}
+      propertyPath: levelIndex
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f6e3464c3846e94886174cea4e26c47, type: 3}
@@ -703,6 +708,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hexagonSpeed: 3.8
   timeToWin: 108
+  buffTimer: 3.5
+  itemSpawnTimer: 12
   itemSpawns:
   - {fileID: 827621410}
   - {fileID: 827621409}
