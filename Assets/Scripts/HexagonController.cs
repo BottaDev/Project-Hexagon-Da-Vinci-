@@ -8,31 +8,30 @@ public class HexagonController : MonoBehaviour {
 
     float shrinkSpeed;
 
-    void Start(){
-
+    void Start()
+    {
         SelectRotation();
 
-        transform.localScale = Vector3.one * 11f;       // Tamaño en el mundo
+        // Tamaño en el mundo
+        transform.localScale = Vector3.one * 11f;       
 	}
 
-	void Update(){
-
+	void Update()
+    {
         shrinkSpeed = GameManager.instance.hexagonSpeed;
 
         transform.localScale -= Vector3.one * shrinkSpeed * Time.deltaTime;
 
-		if(transform.localScale.x <= 0.05f){
-
+		if(transform.localScale.x <= 0.05f)
 			Destroy (gameObject);
-		}
 	}
 
-    void SelectRotation(){
-
+    void SelectRotation()
+    {
         int random = Random.Range(0, 6);
 
-        switch (random){
-
+        switch (random)
+        {
             case 0:
                 rb.rotation = 0;
                 break;

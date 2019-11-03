@@ -408,6 +408,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3414335f8bfa5414f8b69246c0667896, type: 3}
+--- !u!4 &827621405 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7743660256251503302, guid: 3414335f8bfa5414f8b69246c0667896,
+    type: 3}
+  m_PrefabInstance: {fileID: 827621404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &827621406 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7438660184039964991, guid: 3414335f8bfa5414f8b69246c0667896,
+    type: 3}
+  m_PrefabInstance: {fileID: 827621404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &827621407 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7012952516989898526, guid: 3414335f8bfa5414f8b69246c0667896,
+    type: 3}
+  m_PrefabInstance: {fileID: 827621404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &827621408 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4872350708904961168, guid: 3414335f8bfa5414f8b69246c0667896,
+    type: 3}
+  m_PrefabInstance: {fileID: 827621404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &827621409 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8822165192947805690, guid: 3414335f8bfa5414f8b69246c0667896,
+    type: 3}
+  m_PrefabInstance: {fileID: 827621404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &827621410 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2487763009098350092, guid: 3414335f8bfa5414f8b69246c0667896,
+    type: 3}
+  m_PrefabInstance: {fileID: 827621404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1452917875
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,12 +474,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hexagonSpeed: 3.3
-  timeToWin: 5
+  timeToWin: 75
+  itemSpawns:
+  - {fileID: 827621410}
+  - {fileID: 827621409}
+  - {fileID: 827621408}
+  - {fileID: 827621407}
+  - {fileID: 827621406}
+  - {fileID: 827621405}
+  item: {fileID: 5633206830597318571, guid: d73512b3e865574459ac33a1d68920bf, type: 3}
   audioController: {fileID: 15320358}
   actualTimeText: {fileID: 807288812}
   lastTimeText: {fileID: 267093082}
   highTimeText: {fileID: 1969952924}
-  retryButton: {fileID: 4311015431988866940}
   gameOverUI: {fileID: 819599862}
   stageCompleteUI: {fileID: 255086171}
   bestTimerUI: {fileID: 18329811}
@@ -816,9 +859,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f6e3464c3846e94886174cea4e26c47, type: 3}
---- !u!1 &4311015431988866940 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4311015431056858356, guid: 3f6e3464c3846e94886174cea4e26c47,
-    type: 3}
-  m_PrefabInstance: {fileID: 4311015431988866939}
-  m_PrefabAsset: {fileID: 0}

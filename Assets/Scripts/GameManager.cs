@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
 
     public float hexagonSpeed = 1f;
     public float timeToWin = 75;
+    public Transform[] itemSpawns;
+    public GameObject item;
 
     public AudioController audioController;
 
@@ -41,32 +43,31 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void Start() {
-
+    void Start()
+    {
         actualTimeNumber = 0;
         Cursor.visible = false;
 
         // Busca el tiempo maximo del nivel actual
         level = SceneManager.GetActiveScene().buildIndex;
 
-        if (level == 1){
+        if (level == 1)
             highScore = SaveLoad.instance.highScore1;
-        }else if (level == 2){
+        else if (level == 2)
             highScore = SaveLoad.instance.highScore2;
-        } else if (level == 3){
+        else if (level == 3)
             highScore = SaveLoad.instance.highScore3;
-        }
     }
 
-    void Update() {
-
+    void Update()
+    {
         // Player muere
-        if (playerDied){
-
+        if (playerDied)
+        {
             flag++;
 
-            if (flag <= 25){       
-
+            if (flag <= 25)
+            {
                 StopPlayerMovement();
 
                 // Detener el movimiento de los obstaculos
@@ -84,11 +85,10 @@ public class GameManager : MonoBehaviour {
                 actualTimeText.transform.parent.gameObject.GetComponent<Animator>().enabled = true;
 
                 // Gana el nivel 
-                if (Time.timeSinceLevelLoad <= timeToWin){
+                if (Time.timeSinceLevelLoad <= timeToWin)
                     Invoke("ShowGameOver", 2.5f);
-                }else{
+                else
                     Invoke("ShowStageComplete", 2.5f);
-                }
             }
 
             if (Input.GetKey(KeyCode.M))
@@ -107,25 +107,44 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
-        else{
-
+        else
+        {
             if (Input.GetKey(KeyCode.Escape))
                 playerDied = true;
+
+            SpawnItem();
 
             // Contador de tiempo
             actualTimeNumber += Time.deltaTime;
             actualTimeText.text = actualTimeNumber.ToString("F2");
         }
     }
-    
-    void StopPlayerMovement(){
 
+    public void SlowTime()
+    {
+        Time.timeScale = 0.5f;
+        audioController.audioSource.pitch = 0.5f;
+    }
+
+    void SpawnItem()
+    {
+        int random = Random.Range(0, 20);
+        Debug.Log("Random: " + random);
+        if (random == 19)
+        {
+            int randomPos = Random.Range(0, 6);
+            Instantiate(item, itemSpawns[randomPos].position, itemSpawns[randomPos].rotation);
+        }
+    }
+    
+    void StopPlayerMovement()
+    {
         GameObject player = GameObject.Find("Player");
         player.gameObject.GetComponent<PlayerController>().speed = 0;
     }
 
-    void ShowGameOver(){
-
+    void ShowGameOver()
+    {
         actualTimeText.transform.parent.gameObject.SetActive(false);
 
         Cursor.visible = (true);
@@ -140,8 +159,8 @@ public class GameManager : MonoBehaviour {
         gameOverUI.transform.GetChild(1).gameObject.GetComponent<Animator>().enabled = true;
     }
 
-    void ShowStageComplete(){
-
+    void ShowStageComplete()
+    {
         actualTimeText.transform.parent.gameObject.SetActive(false);
 
         Cursor.visible = (true);
@@ -156,10 +175,10 @@ public class GameManager : MonoBehaviour {
         stageCompleteUI.transform.GetChild(1).gameObject.GetComponent<Animator>().enabled = true;
     }
 
-    void CheckBestTime(){
-        
-        if (lastTimeNumber > highScore){
-
+    void CheckBestTime()
+    {
+        if (lastTimeNumber > highScore)
+        {
             highScore = lastTimeNumber;
             SaveLoad.instance.SaveBestTime(level, lastTimeNumber);
         }
@@ -167,8 +186,8 @@ public class GameManager : MonoBehaviour {
         highTimeText.text = highScore.ToString("F2");
     }
 
-    void ShowTimers(){
-
+    void ShowTimers()
+    {
         bestTimerUI.SetActive(true);
         lastTimerUI.SetActive(true);
 

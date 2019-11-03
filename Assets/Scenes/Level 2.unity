@@ -124,6 +124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4311015432245376653, guid: 3f6e3464c3846e94886174cea4e26c47,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4311015432560429983, guid: 3f6e3464c3846e94886174cea4e26c47,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -229,25 +234,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4311015432245376653, guid: 3f6e3464c3846e94886174cea4e26c47,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4311015431056858347, guid: 3f6e3464c3846e94886174cea4e26c47,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.0040283203
-      objectReference: {fileID: 0}
-    - target: {fileID: 4311015431056858351, guid: 3f6e3464c3846e94886174cea4e26c47,
-        type: 3}
-      propertyPath: levelIndex
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4311015431325589257, guid: 3f6e3464c3846e94886174cea4e26c47,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4311015431325589256, guid: 3f6e3464c3846e94886174cea4e26c47,
         type: 3}
@@ -349,6 +339,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.30000305
       objectReference: {fileID: 0}
+    - target: {fileID: 4311015431056858351, guid: 3f6e3464c3846e94886174cea4e26c47,
+        type: 3}
+      propertyPath: levelIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311015431325589257, guid: 3f6e3464c3846e94886174cea4e26c47,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f6e3464c3846e94886174cea4e26c47, type: 3}
 --- !u!114 &114486204 stripped
@@ -423,12 +423,6 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &114486212 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4311015431056858356, guid: 3f6e3464c3846e94886174cea4e26c47,
-    type: 3}
-  m_PrefabInstance: {fileID: 114486203}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &433532593
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,6 +636,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3414335f8bfa5414f8b69246c0667896, type: 3}
+--- !u!4 &827621405 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7743660256251503302, guid: 3414335f8bfa5414f8b69246c0667896,
+    type: 3}
+  m_PrefabInstance: {fileID: 827621404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &827621406 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7438660184039964991, guid: 3414335f8bfa5414f8b69246c0667896,
+    type: 3}
+  m_PrefabInstance: {fileID: 827621404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &827621407 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7012952516989898526, guid: 3414335f8bfa5414f8b69246c0667896,
+    type: 3}
+  m_PrefabInstance: {fileID: 827621404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &827621408 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4872350708904961168, guid: 3414335f8bfa5414f8b69246c0667896,
+    type: 3}
+  m_PrefabInstance: {fileID: 827621404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &827621409 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8822165192947805690, guid: 3414335f8bfa5414f8b69246c0667896,
+    type: 3}
+  m_PrefabInstance: {fileID: 827621404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &827621410 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2487763009098350092, guid: 3414335f8bfa5414f8b69246c0667896,
+    type: 3}
+  m_PrefabInstance: {fileID: 827621404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1452917875
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,11 +703,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hexagonSpeed: 3.8
   timeToWin: 108
+  itemSpawns:
+  - {fileID: 827621410}
+  - {fileID: 827621409}
+  - {fileID: 827621408}
+  - {fileID: 827621407}
+  - {fileID: 827621406}
+  - {fileID: 827621405}
+  item: {fileID: 5633206830597318571, guid: d73512b3e865574459ac33a1d68920bf, type: 3}
   audioController: {fileID: 114486204}
   actualTimeText: {fileID: 114486211}
   lastTimeText: {fileID: 114486205}
   highTimeText: {fileID: 114486207}
-  retryButton: {fileID: 114486212}
   gameOverUI: {fileID: 114486210}
   stageCompleteUI: {fileID: 114486209}
   bestTimerUI: {fileID: 114486208}

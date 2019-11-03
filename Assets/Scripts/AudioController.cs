@@ -14,55 +14,46 @@ public class AudioController : MonoBehaviour {
 
     int timesReproduced = 0;
 
-    void Start(){
-
+    void Start()
+    {
         StartCoroutine(PlayMusicLevel());
     }
 
-    /*public void PlayerDeadSound(){
-
-        timesReproduced++;    
-        
-        if(timesReproduced == 1){
-
-            audioSource.Stop();
-            audioSource.clip = playerDeadSound;
-            audioSource.Play();
-        }
-    }*/
-
-    public void Click_01(){
-
+    public void Click_01()
+    {
         audioSource.clip = click_01;
         audioSource.Play();
     }
 
-    public void Click_02(){
-
+    public void Click_02()
+    {
         audioSource.clip = click_02;
         audioSource.Play();
     }
 
-    IEnumerator PlayMusicLevel(){
-
-        if (audioSource.clip != null){
-
+    IEnumerator PlayMusicLevel()
+    {
+        if (audioSource.clip != null)
+        {
             yield return new WaitForSeconds(audioSource.clip.length);
+
             audioSource.clip = infiniteProgressiveSong;
             audioSource.Play();
+
             yield return new WaitForSeconds(audioSource.clip.length);
+
             audioSource.loop = true;
             audioSource.clip = infiniteSong;
             audioSource.Play();
         }
     }
 
-    public IEnumerator PlayerDeadSound(){
-
+    public IEnumerator PlayerDeadSound()
+    {
         timesReproduced++;
 
-        if (timesReproduced == 1){
-
+        if (timesReproduced == 1)
+        {
             audioSource.Stop();
             audioSource.clip = playerDeadSound;
             audioSource.Play();

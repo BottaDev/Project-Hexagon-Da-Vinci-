@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class ChangeColor : MonoBehaviour {
 
-    //public float r;
-    //public float g;
-    //public float b;
-    //public bool randomMode;
-
     [HideInInspector]public Renderer render;
     float timeLeft;
     Color targetColor;
@@ -24,11 +19,7 @@ public class ChangeColor : MonoBehaviour {
 
             render.material.color = targetColor;
 
-            //if(randomMode){
             targetColor = new Color(Random.value, Random.value, Random.value);
-            //} else {
-                //targetColor = new Color(r, g, b);
-            //}
 
             timeLeft = 1f;
         } else{

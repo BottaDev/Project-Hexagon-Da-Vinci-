@@ -9,19 +9,20 @@ public class PlayerController : MonoBehaviour {
 
 	float movement;
 
-	void Update(){
-		
+	void Update()
+    {	
 		movement = Input.GetAxisRaw ("Horizontal");
 	}
 
-	void FixedUpdate(){
-
+	void FixedUpdate()
+    {
 		transform.RotateAround (Vector3.zero, Vector3.forward, movement * Time.deltaTime * -speed);			// Si la velocidad no es negativa, el moviemiento es invertido
 	}
 
-    void OnTriggerEnter2D(Collider2D collider) {
-
-        GameManager.instance.playerDied = true;
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.tag == "Hexagon")
+            GameManager.instance.playerDied = true;
     }
 
 }
