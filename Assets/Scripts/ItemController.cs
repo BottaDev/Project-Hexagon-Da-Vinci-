@@ -9,6 +9,7 @@ public class ItemController : MonoBehaviour
     float changeTime = 0.2f;
     Transform center;
     SpriteRenderer spriteRenderer;
+    [SerializeField]
     int i = 0;
 
     private void Start()
@@ -31,7 +32,7 @@ public class ItemController : MonoBehaviour
         changeTime -= Time.deltaTime;
         if (changeTime <= 0)
         {
-            if (i == sprites.Length - 1)
+            if (i == sprites.Length)
                 i = 0;
 
             changeTime = 0.2f;

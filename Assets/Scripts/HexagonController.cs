@@ -13,7 +13,7 @@ public class HexagonController : MonoBehaviour {
         SelectRotation();
 
         // Tamaño en el mundo
-        transform.localScale = Vector3.one * 11f;       
+        transform.localScale = Vector3.one * 13f;       
 	}
 
 	void Update()

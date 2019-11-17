@@ -12,6 +12,9 @@ public class CopyColorRenderer : MonoBehaviour {
         playerColor = GameObject.Find("Player").gameObject.GetComponent<ChangeColor>();        
 
         render = gameObject.GetComponent<LineRenderer>();
+
+        render.startColor = playerColor.render.material.color;
+        render.endColor = playerColor.render.material.color;
     }
 
     void Update(){
