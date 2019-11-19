@@ -9,7 +9,6 @@ public class ItemController : MonoBehaviour
     float changeTime = 0.2f;
     Transform center;
     SpriteRenderer spriteRenderer;
-    [SerializeField]
     int i = 0;
 
     private void Start()
