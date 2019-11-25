@@ -59,8 +59,6 @@ public class SaveLoad : MonoBehaviour {
         highScore1 = PlayerPrefs.GetFloat("HighScore 1");
         highScore2 = PlayerPrefs.GetFloat("HighScore 2");
         highScore3 = PlayerPrefs.GetFloat("HighScore 3");
-
-        print("Cargo los Times");
     }
 
     public void ResetTimes(){
@@ -71,8 +69,6 @@ public class SaveLoad : MonoBehaviour {
         SaveBestTime(1, 0f);
         SaveBestTime(2, 0f);
         SaveBestTime(3, 0f);
-
-        print("Reseteo los Times");
     }
 
     public void SetScoreText(){
@@ -82,7 +78,5 @@ public class SaveLoad : MonoBehaviour {
         scoreTime_1.text = highScore1.ToString("F2");
         scoreTime_2.text = highScore2.ToString("F2");
         scoreTime_3.text = highScore3.ToString("F2");
-
-        print("Seteo los Times;");
     }
 }

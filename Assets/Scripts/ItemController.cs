@@ -24,6 +24,9 @@ public class ItemController : MonoBehaviour
         float speed = GameManager.instance.hexagonSpeed * 1.2f * Time.deltaTime;
 
         transform.position = Vector2.MoveTowards(transform.position, center.position, speed);
+        /*
+        if (transform.position.x =)
+            Destroy(gameObject);*/
     }
 
     void ChangeSprite()
@@ -44,12 +47,19 @@ public class ItemController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            GameManager.instance.SlowGameSpeed();
+            //GameManager.instance.SlowGameSpeed();
+            GameManager.instance.AddTimeEnergy();
 
             Destroy(gameObject);
         }
+    }
 
-        if (collision.gameObject.name == "Center")
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.name == "Center")
+        {
+            print("Entro if");
             Destroy(gameObject);
+        }
     }
 }

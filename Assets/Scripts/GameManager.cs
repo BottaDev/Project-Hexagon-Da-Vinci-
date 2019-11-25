@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour {
 
     public float hexagonSpeed = 1f;
     public float timeToWin = 75;
-    public float buffTimer = 5;
+    //public float buffTimer = 5;
     public float itemSpawnTimer = 8;
+    public float timeEnergy = 100;
+    public float itemEnergyValue = 15;
 
     public Transform[] itemSpawns;
     public GameObject item;
@@ -21,16 +23,18 @@ public class GameManager : MonoBehaviour {
     public Text actualTimeText;
     public Text lastTimeText;
     public Text highTimeText;
+    public Text timeEnergyText;
 
     public GameObject gameOverUI;
     public GameObject stageCompleteUI;
     public GameObject bestTimerUI;
     public GameObject lastTimerUI;
+    public Image timeEnergyBarImage;
 
     Spawner hexagonSpawner;
     float actualTimeNumber = 0;
     float lastTimeNumber = 0;
-    float currentBuffTime = 0;
+    //float currentBuffTime = 0;
     float currentItemSpawnTime = 0;
     float defaultHexagonSpeed;
     float defaultHexagonSpawnRate;
@@ -59,9 +63,11 @@ public class GameManager : MonoBehaviour {
 
         actualTimeNumber = 0;
         Cursor.visible = false;
-        currentBuffTime = buffTimer;
+        //currentBuffTime = buffTimer;
         defaultHexagonSpeed = hexagonSpeed;
         defaultHexagonSpawnRate = hexagonSpawner.spawnRate;
+
+        UpdateEnergyBarUI();
 
         // Busca el tiempo maximo del nivel actual
         level = SceneManager.GetActiveScene().buildIndex;
@@ -105,12 +111,13 @@ public class GameManager : MonoBehaviour {
             lastTimeText.text = lastTimeNumber.ToString("F2");
 
             actualTimeText.transform.parent.gameObject.GetComponent<Animator>().enabled = true;
+            timeEnergyText.transform.parent.gameObject.GetComponent<Animator>().enabled = true;
 
             // Gana el nivel 
             if (Time.timeSinceLevelLoad <= timeToWin)
-                Invoke("ShowGameOver", 2.5f);
+                Invoke("ShowGameOverUI", 2.5f);
             else
-                Invoke("ShowStageComplete", 2.5f);
+                Invoke("ShowStageCompleteUI", 2.5f);
         }
 
         if (Input.GetKey(KeyCode.M))
@@ -132,8 +139,27 @@ public class GameManager : MonoBehaviour {
 
     void ContinueGame()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
             playerDied = true;
+
+        if (Input.GetKeyDown(KeyCode.Space) && timeEnergy > 0)
+            SlowGameSpeed();
+        else if (Input.GetKeyUp(KeyCode.Space))
+            ResetGameSpeed();
+
+        // Coloco este if aca porque si no nunca entra al estar en slowMode
+        if (timeEnergy < 0)
+        {
+            slowModeAcive = false;
+            timeEnergy = 0;
+        }
+
+        if (slowModeAcive)
+        {
+            timeEnergy -= Time.deltaTime * 10f;
+
+            UpdateEnergyBarUI();
+        }
 
         // Spawn Items
         currentItemSpawnTime -= Time.deltaTime;
@@ -142,7 +168,8 @@ public class GameManager : MonoBehaviour {
             currentItemSpawnTime = itemSpawnTimer;
             SpawnItem();
         }
-
+        
+        /*
         if (slowModeAcive)
         {
             currentBuffTime -= Time.deltaTime;
@@ -152,6 +179,7 @@ public class GameManager : MonoBehaviour {
                 ResetGameSpeed();
             }
         }
+        */
 
         // Contador de tiempo
         actualTimeNumber += Time.deltaTime;
@@ -167,7 +195,7 @@ public class GameManager : MonoBehaviour {
         slowModeAcive = true;
     }
 
-    private void ResetGameSpeed()
+    void ResetGameSpeed()
     {
         hexagonSpeed = defaultHexagonSpeed;
         audioController.audioSource.pitch = 1;
@@ -179,7 +207,6 @@ public class GameManager : MonoBehaviour {
     void SpawnItem()
     {
         int random = Random.Range(0, 10);
-        Debug.Log("Random: " + random);
         if (random == 9)
         {
             int randomPos = Random.Range(0, 6);
@@ -193,9 +220,10 @@ public class GameManager : MonoBehaviour {
         player.gameObject.GetComponent<PlayerController>().speed = 0;
     }
 
-    void ShowGameOver()
+    void ShowGameOverUI()
     {
         actualTimeText.transform.parent.gameObject.SetActive(false);
+        timeEnergyText.transform.parent.gameObject.SetActive(false);
 
         Cursor.visible = (true);
 
@@ -203,15 +231,16 @@ public class GameManager : MonoBehaviour {
 
         gameOverUI.SetActive(true);
 
-        ShowTimers();
+        ShowTimersUI();
 
         gameOverUI.transform.GetChild(0).gameObject.GetComponent<Animator>().enabled = true;
         gameOverUI.transform.GetChild(1).gameObject.GetComponent<Animator>().enabled = true;
     }
 
-    void ShowStageComplete()
+    void ShowStageCompleteUI()
     {
         actualTimeText.transform.parent.gameObject.SetActive(false);
+        timeEnergyText.transform.parent.gameObject.SetActive(false);
 
         Cursor.visible = (true);
 
@@ -219,7 +248,7 @@ public class GameManager : MonoBehaviour {
 
         stageCompleteUI.SetActive(true);
 
-        ShowTimers();
+        ShowTimersUI();
 
         stageCompleteUI.transform.GetChild(0).gameObject.GetComponent<Animator>().enabled = true;
         stageCompleteUI.transform.GetChild(1).gameObject.GetComponent<Animator>().enabled = true;
@@ -236,12 +265,28 @@ public class GameManager : MonoBehaviour {
         highTimeText.text = highScore.ToString("F2");
     }
 
-    void ShowTimers()
+    void ShowTimersUI()
     {
         bestTimerUI.SetActive(true);
         lastTimerUI.SetActive(true);
 
         bestTimerUI.GetComponent<Animator>().enabled = true;
         lastTimerUI.GetComponent<Animator>().enabled = true;
+    }
+
+    public void AddTimeEnergy()
+    {
+        timeEnergy += itemEnergyValue;
+
+        if (timeEnergy > 100)
+            timeEnergy = 100;
+
+        UpdateEnergyBarUI();
+    }
+
+    void UpdateEnergyBarUI()
+    {
+        timeEnergyText.text = timeEnergy.ToString("F0") + "%";
+        timeEnergyBarImage.fillAmount = timeEnergy / 100;
     }
 }

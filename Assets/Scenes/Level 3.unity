@@ -176,7 +176,6 @@ GameObject:
   - component: {fileID: 545481607}
   - component: {fileID: 545481606}
   - component: {fileID: 545481610}
-  - component: {fileID: 545481611}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -271,19 +270,6 @@ MonoBehaviour:
   rotationSpeed: 50
   multipliedSpeed: 3.5
   rotationTimer: 0
---- !u!114 &545481611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 545481605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad2b63e157997df4e97411f2329b7614, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  magnitude: 0.1
 --- !u!1001 &827621404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -667,6 +653,30 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1173724458 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3288761689726738307, guid: 3f6e3464c3846e94886174cea4e26c47,
+    type: 3}
+  m_PrefabInstance: {fileID: 1173724449}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1173724459 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5723186118941510025, guid: 3f6e3464c3846e94886174cea4e26c47,
+    type: 3}
+  m_PrefabInstance: {fileID: 1173724449}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1452917875
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,8 +708,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hexagonSpeed: 4.2
   timeToWin: 160
-  buffTimer: 2
   itemSpawnTimer: 16
+  timeEnergy: 15
+  itemEnergyValue: 5
   itemSpawns:
   - {fileID: 827621410}
   - {fileID: 827621409}
@@ -712,10 +723,12 @@ MonoBehaviour:
   actualTimeText: {fileID: 1173724457}
   lastTimeText: {fileID: 1173724451}
   highTimeText: {fileID: 1173724453}
+  timeEnergyText: {fileID: 1173724459}
   gameOverUI: {fileID: 1173724456}
   stageCompleteUI: {fileID: 1173724455}
   bestTimerUI: {fileID: 1173724454}
   lastTimerUI: {fileID: 1173724452}
+  timeEnergyBarImage: {fileID: 1173724458}
   playerDied: 0
 --- !u!4 &1452917877
 Transform:
