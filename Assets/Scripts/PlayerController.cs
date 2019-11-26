@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
     {
         if(collider.transform.parent != null)
         {
-            if (collider.transform.parent.gameObject.tag == "Hexagon")
+            if (collider.transform.parent.gameObject.layer == 9)
                 GameManager.instance.playerDied = true;
         }
     }

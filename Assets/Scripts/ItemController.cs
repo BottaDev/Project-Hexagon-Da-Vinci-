@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemController : MonoBehaviour
 {
     public Sprite[] sprites;
+    public float speed = 1.2f;
 
     float changeTime = 0.2f;
     Transform center;
@@ -19,14 +20,14 @@ public class ItemController : MonoBehaviour
 
     void Update()
     {
+        if (transform.position == Vector3.zero)
+            Destroy(gameObject);
+
         ChangeSprite();
 
-        float speed = GameManager.instance.hexagonSpeed * 1.2f * Time.deltaTime;
+        float realSpeed = GameManager.instance.hexagonSpeed * speed * Time.deltaTime;
 
-        transform.position = Vector2.MoveTowards(transform.position, center.position, speed);
-        /*
-        if (transform.position.x =)
-            Destroy(gameObject);*/
+        transform.position = Vector2.MoveTowards(transform.position, center.position, realSpeed);
     }
 
     void ChangeSprite()
@@ -45,20 +46,10 @@ public class ItemController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.layer == 8)
         {
-            //GameManager.instance.SlowGameSpeed();
             GameManager.instance.AddTimeEnergy();
 
-            Destroy(gameObject);
-        }
-    }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.name == "Center")
-        {
-            print("Entro if");
             Destroy(gameObject);
         }
     }

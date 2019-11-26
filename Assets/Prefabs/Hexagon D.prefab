@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 120133024546557468}
   - component: {fileID: 50135596543768440}
   - component: {fileID: 114319233321399838}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hexagon
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4505599986843044}
   - component: {fileID: 68270022812918548}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 4799427863211138}
   - component: {fileID: 50683108709672446}
   - component: {fileID: 114176899231728574}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hexagon D
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 120244639882400402}
   - component: {fileID: 50309681772250440}
   - component: {fileID: 114103336057719784}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 'Hexagon '
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -455,7 +455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4374891232847570}
   - component: {fileID: 68818167298843942}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

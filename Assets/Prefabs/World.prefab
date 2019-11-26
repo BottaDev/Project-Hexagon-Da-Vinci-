@@ -195,7 +195,6 @@ GameObject:
   - component: {fileID: 4827484955516540}
   - component: {fileID: 212749493231132162}
   - component: {fileID: 114818006549316690}
-  - component: {fileID: 1592061155751637694}
   m_Layer: 0
   m_Name: Center
   m_TagString: Untagged
@@ -277,22 +276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11b158f2ebe8f744c899cb6c9c6a6179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &1592061155751637694
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361499576178348}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.05
 --- !u!1 &1371161356493372
 GameObject:
   m_ObjectHideFlags: 0

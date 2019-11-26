@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 50493194274593242}
   - component: {fileID: 114410879327872792}
   - component: {fileID: 114359512649594614}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hexagon A
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4341075546602360}
   - component: {fileID: 68956349074389340}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

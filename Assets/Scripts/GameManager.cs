@@ -146,17 +146,18 @@ public class GameManager : MonoBehaviour {
             SlowGameSpeed();
         else if (Input.GetKeyUp(KeyCode.Space))
             ResetGameSpeed();
-
-        // Coloco este if aca porque si no nunca entra al estar en slowMode
-        if (timeEnergy < 0)
-        {
-            slowModeAcive = false;
-            timeEnergy = 0;
-        }
+        
 
         if (slowModeAcive)
         {
             timeEnergy -= Time.deltaTime * 10f;
+
+            if (timeEnergy < 0)
+            {
+                timeEnergy = 0;
+
+                ResetGameSpeed();
+            }
 
             UpdateEnergyBarUI();
         }
@@ -168,18 +169,6 @@ public class GameManager : MonoBehaviour {
             currentItemSpawnTime = itemSpawnTimer;
             SpawnItem();
         }
-        
-        /*
-        if (slowModeAcive)
-        {
-            currentBuffTime -= Time.deltaTime;
-            if (currentBuffTime <= 0)
-            {
-                currentBuffTime = buffTimer;
-                ResetGameSpeed();
-            }
-        }
-        */
 
         // Contador de tiempo
         actualTimeNumber += Time.deltaTime;
