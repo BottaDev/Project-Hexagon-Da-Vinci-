@@ -1884,7 +1884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd80fad63cac912468ef0c3f9f4f642e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDeadSound: {fileID: 8300000, guid: 4668d9fcf8d264f3693f23878a14042b, type: 3}
+  playerDeadSound: {fileID: 8300000, guid: 3df59136337f44def8d005e65dd667be, type: 3}
   click_01: {fileID: 0}
   click_02: {fileID: 0}
   infiniteProgressiveSong: {fileID: 8300000, guid: 457a8cf1c89aea04fb4ab3ee56f34939,
